@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class PatternsApplication {
 
 	public static void main(String[] args) {
