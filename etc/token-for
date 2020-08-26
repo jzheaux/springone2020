@@ -1,0 +1,4 @@
+#!/bin/sh
+
+PASSWORD="secret"
+export TOKEN=`curl --user $1:$PASSWORD auth-server:9000/oauth2/token -dgrant_type=client_credentials | jq -r .access_token`
