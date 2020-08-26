@@ -2,6 +2,9 @@ package io.jzheaux.springsecurity.patterns;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,8 +24,8 @@ public class PatternsApplication {
 		}
 
 		@GetMapping("/")
-		public String hello() {
-			return "Hello!";
+		public String hello(@CurrentSecurityContext(expression="authentication.name") String name) {
+			return "Hello, " + name + "!";
 		}
 	}
 
