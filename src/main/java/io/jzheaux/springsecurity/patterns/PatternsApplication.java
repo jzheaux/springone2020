@@ -4,8 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.CurrentSecurityContext;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
@@ -26,6 +29,11 @@ public class PatternsApplication {
 		@GetMapping("/")
 		public String hello(@CurrentSecurityContext(expression="authentication.name") String name) {
 			return "Hello, " + name + "!";
+		}
+
+		@PostMapping("/location")
+		public String changeLocation(Authentication authentication, @RequestBody String location) {
+			return this.locationService.moveTo(location);
 		}
 	}
 
